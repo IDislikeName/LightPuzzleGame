@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody rb;
+    public CharacterController cc;
     public float speed;
+    public float rotateSpeed;
 
     float horiz;
     float vert;
 // Start is called before the first frame update
 void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        cc = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -20,10 +21,10 @@ void Start()
     {
         horiz = Input.GetAxisRaw("Horizontal");
         vert = Input.GetAxisRaw("Vertical");
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.up);
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(horiz*speed,rb.velocity.y,vert*speed);
+        Vector3 move = new Vector3(horiz, 0, vert);
+        cc.SimpleMove(move* speed);
     }
 }
