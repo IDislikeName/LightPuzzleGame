@@ -53,10 +53,8 @@ namespace RW.MonumentValley
         // alternative to OnMouseDown
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("click out");
             if (clickAction != null)
             {
-                Debug.Log("click");
                 // invoke the clickAction with world space raycast hit position
                 clickAction.Invoke(this, eventData.pointerPressRaycast.worldPosition);
             }
